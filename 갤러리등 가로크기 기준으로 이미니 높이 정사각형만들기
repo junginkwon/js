@@ -1,0 +1,12 @@
+// 갤러리 가로크기 기준으로 이미지 높이 정사각형으로 만들기
+$(document).ready(function(){
+	if($("*").hasClass("imgfull")){
+		$(".imgfull").css({maxWidth:"",minWidth:"",maxHeight:"",minHeight:""});
+		var maxW;
+		$(window).resize(function(){
+			maxW = $(".imgfull .img").eq(0).width();
+			$(".imgfull .img").css({height:maxW,overflow:"hidden"});
+		});
+		return false;
+	}
+});
