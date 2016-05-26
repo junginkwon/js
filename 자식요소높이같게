@@ -1,15 +1,21 @@
-// 자식들 높이 같게 만들기
+// 자식들 높이 같게 만들기 + 자식 첫번째 요소 높이 100%
+// 태블릿 이상에서 적용
 $(window).load(function(){
-	if($("*").hasClass("sameH")){
+	if($("*").hasClass("sameH_maxH")){
 		var maxH;
 		$(window).resize(function(){
-			 $(".sameH:eq("+idx+")").children().css({minHeight:""});
-			 $(".sameH").each(function(idx){
-				maxH = Math.max($(".sameH:eq("+idx+")").children().outerHeight());
-				$(".sameH:eq("+idx+")").children().css({minHeight:maxH});
-				$(".sameH:eq("+idx+")").children().children().css({minHeight:maxH});
-				console.log(idx+"번째 : "+maxH);
-			 });
+			$(".sameH_maxH").children().css({minHeight:""});
+			$(".sameH_maxH").children().children().css({minHeight:""});
+			if($(window).width()>767){
+				$(".sameH_maxH").each(function(idx){
+					maxH = Math.max($(".sameH_maxH:eq("+idx+")").children().height()) + 1;
+					$(".sameH_maxH:eq("+idx+")").children().css({minHeight:maxH, overflow:"hidden"});
+					$(".sameH_maxH:eq("+idx+")").children().children().css({minHeight:maxH, overflow:"hidden"});
+					console.log(idx+"번째 : "+maxH);
+				});
+			}
 		});
+		$(window).resize();
+		return false;
 	};
 });
