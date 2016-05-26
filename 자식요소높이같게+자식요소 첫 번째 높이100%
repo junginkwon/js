@@ -1,0 +1,16 @@
+// 자식들 높이 같게 만들기+자식안의 첫 번째 요소 높이를 100%
+$(window).load(function(){
+	if($("*").hasClass("sameH_maxH")){
+		var maxH;
+		$(window).resize(function(){
+			$(".sameH_maxH").children().css({minHeight:""});
+			$(".sameH_maxH").children().children().css({minHeight:""});
+			$(".sameH_maxH").each(function(idx){
+				maxH = Math.max($(".sameH_maxH:eq("+idx+")").children().height());
+				$(".sameH_maxH:eq("+idx+")").children().css({minHeight:maxH});
+				$(".sameH_maxH:eq("+idx+")").children().children().css({minHeight:maxH});
+				console.log(idx+"번째 : "+maxH);
+			});
+		});
+	};
+});
