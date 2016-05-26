@@ -1,0 +1,22 @@
+//ie8 콘솔로그 오류 제거
+var console = window.console || {log:function(){}};
+
+// 가속도
+var easingType1 = "easeInOutExpo";
+var easingType2 = "easeInOutCubic";
+
+// 최상단 올리기
+$(document).ready(function () {
+	$(window).scroll(function(){
+		var scTop = $(window).scrollTop();
+		if (scTop > $("header").outerHeight()) {
+			$("#gotop").fadeIn(300);
+		} else {
+			$("#gotop").fadeOut(300);
+		}
+	});
+	$("#gotop").click(function(){
+		$("html, body").stop().animate({scrollTop:0}, 500);
+		return false;
+	});
+});
