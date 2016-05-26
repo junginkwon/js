@@ -1,0 +1,12 @@
+// 접속한 기기가 PC인지 Mobile인지 체크
+var deviceCk = "win16|win32|win64|mac|macintel";
+var device;
+if(navigator.platform){
+	if( deviceCk.indexOf(navigator.platform.toLowerCase())<0 ){
+		device = "mobile";
+	}else{
+		device = "pc";
+		$("[href*='tel:']").contents().unwrap(); //PC면 tel링크 안 먹게 하기.
+		$("area[href*='tel:']").remove();
+	}
+}
