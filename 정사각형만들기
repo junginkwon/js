@@ -1,0 +1,14 @@
+// 가로크기 기준으로 정사각형 만들기
+$(document).ready(function(){
+	if($("*").hasClass("square")){
+		var maxW;
+		$(window).resize(function(){
+			$(".square ").each(function(idx){
+				maxW = $(".square:eq("+idx+")").children().outerWidth();
+				$(".square:eq("+idx+")").children().css({height:maxW});
+			});
+		});
+		$(window).resize();
+		return false;
+	}
+});
