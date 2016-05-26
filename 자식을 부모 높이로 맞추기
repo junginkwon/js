@@ -1,0 +1,15 @@
+// 부모 높이와 같게 만들기
+$(window).load(function(){
+	if($("*").hasClass("momH")){
+		var maxH;
+		$(window).resize(function(){
+			 $(".momH").css({minHeight:""});
+			 $(".momH").each(function(idx){
+				maxH = $(".momH:eq("+idx+")").parent().outerHeight();
+				$(".momH:eq("+idx+")").css({minHeight:maxH});
+			 });
+		});
+		$(window).resize();
+		return false;
+	};
+});
