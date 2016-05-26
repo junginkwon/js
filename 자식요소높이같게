@@ -1,0 +1,15 @@
+// 자식들 높이 같게 만들기
+$(window).load(function(){
+	if($("*").hasClass("sameH")){
+		var maxH;
+		$(window).resize(function(){
+			 $(".sameH:eq("+idx+")").children().css({minHeight:""});
+			 $(".sameH").each(function(idx){
+				maxH = Math.max($(".sameH:eq("+idx+")").children().outerHeight());
+				$(".sameH:eq("+idx+")").children().css({minHeight:maxH});
+				$(".sameH:eq("+idx+")").children().children().css({minHeight:maxH});
+				console.log(idx+"번째 : "+maxH);
+			 });
+		});
+	};
+});
