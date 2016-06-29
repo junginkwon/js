@@ -6,16 +6,18 @@ $(window).load(function(){
 		$(window).resize(function(){
 			$(".sameH_maxH").children().css({minHeight:""});
 			$(".sameH_maxH").children().children().css({minHeight:""});
-			if($(window).width()>767){
+
 				$(".sameH_maxH").each(function(idx){
-					maxH = Math.max($(".sameH_maxH:eq("+idx+")").children().height()) + 1;
+					var itemH = $(".sameH_maxH:eq("+idx+")").children().map(function(){  
+						return $(this).height() + 1;  
+					}).get(),
+					maxH = Math.max.apply(null, itemH);
 					$(".sameH_maxH:eq("+idx+")").children().css({minHeight:maxH, overflow:"hidden"});
 					$(".sameH_maxH:eq("+idx+")").children().children().css({minHeight:maxH, overflow:"hidden"});
 					console.log(idx+"번째 : "+maxH);
 				});
-			}
+
 		});
-		$(window).resize();
 		return false;
 	};
 });
