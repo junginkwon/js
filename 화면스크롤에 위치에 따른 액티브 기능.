@@ -1,0 +1,42 @@
+function activeMenu() {
+    var scrollTop = $(window).scrollTop();
+
+    // 포지션따라 메뉴 활성화
+    var id1 = $('#home').offset().top,
+      id2 = Math.ceil($('#about').offset().top),
+      id3 = Math.ceil($('#history').offset().top),
+      id4 = Math.ceil($('#clinic').offset().top),
+      id5 = Math.ceil($('#labolatory').offset().top),
+      id6 = Math.ceil($('#customer').offset().top),
+      id7 = Math.ceil($('#dealers').offset().top);
+
+    if(scrollTop >= id1){
+        $('#navigation li').removeClass('active');
+        $('#navigation li a[href=#home]').parent('li').addClass('active');
+    }
+    if(scrollTop >= id2){
+        $('#navigation li').removeClass('active');
+        $('#navigation li a[href=#about]').parent('li').addClass('active');
+    }
+    if (scrollTop >= id3){
+        $('#navigation li').removeClass('active');
+        $('#navigation li a[href=#history]').parent('li').addClass('active');
+    }
+    if (scrollTop >= id4){
+        $('#navigation li').removeClass('active');
+        $('#navigation li a[href=#clinic]').parent('li').addClass('active');
+    }
+    if (scrollTop >= id5){
+        $('#navigation li').removeClass('active');
+        $('#navigation li a[href=#labolatory]').parent('li').addClass('active');
+    }
+    if (scrollTop >= id6){
+        $('#navigation li').removeClass('active');
+        $('#navigation li a[href=#customer]').parent('li').addClass('active');
+    }
+    if (scrollTop >= id7 || scrollTop == $(document).height()-$(window).height()){
+        $('#navigation li').removeClass('active');
+        $('#navigation li a[href=#dealers]').parent('li').addClass('active');
+    }
+
+}
