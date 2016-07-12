@@ -1,42 +1,165 @@
+/////////////////////////////////////////// script
+
+$(document).ready(function(){
+    var win = $(window);
+
+    win.load(function(){
+        win.trigger('resize');
+    });
+    win.on("resize",function(){
+        $('body').addClass('loaded');
+        activeMenu();
+    }).on("resize",function(){
+        $('body').addClass('loaded');
+    });
+	
+	win.scroll(function () {
+        var scrollTop = $(this).scrollTop();
+        activeMenu();
+    }).scroll();
+});
+
 function activeMenu() {
-    var scrollTop = $(window).scrollTop();
+	var scrollTop = $(window).scrollTop() + $(window).height();
+	console.log(scrollTop);
 
-    // 포지션따라 메뉴 활성화
-    var id1 = $('#home').offset().top,
-      id2 = Math.ceil($('#about').offset().top),
-      id3 = Math.ceil($('#history').offset().top),
-      id4 = Math.ceil($('#clinic').offset().top),
-      id5 = Math.ceil($('#labolatory').offset().top),
-      id6 = Math.ceil($('#customer').offset().top),
-      id7 = Math.ceil($('#dealers').offset().top);
+	// 포지션따라 메뉴 활성화
+	var id1 = Math.ceil($("section").eq(1).offset().top),
+	  id2 = Math.ceil($("section").eq(2).offset().top);
+	  
+	if(scrollTop <= $(window).height()){
+		$("section").removeClass("active");
+	}
+	if(scrollTop >= id1) $("section").eq(1).addClass("active");
+	if(scrollTop >= id2) $("section").eq(2).addClass("active");
 
-    if(scrollTop >= id1){
-        $('#navigation li').removeClass('active');
-        $('#navigation li a[href=#home]').parent('li').addClass('active');
-    }
-    if(scrollTop >= id2){
-        $('#navigation li').removeClass('active');
-        $('#navigation li a[href=#about]').parent('li').addClass('active');
-    }
-    if (scrollTop >= id3){
-        $('#navigation li').removeClass('active');
-        $('#navigation li a[href=#history]').parent('li').addClass('active');
-    }
-    if (scrollTop >= id4){
-        $('#navigation li').removeClass('active');
-        $('#navigation li a[href=#clinic]').parent('li').addClass('active');
-    }
-    if (scrollTop >= id5){
-        $('#navigation li').removeClass('active');
-        $('#navigation li a[href=#labolatory]').parent('li').addClass('active');
-    }
-    if (scrollTop >= id6){
-        $('#navigation li').removeClass('active');
-        $('#navigation li a[href=#customer]').parent('li').addClass('active');
-    }
-    if (scrollTop >= id7 || scrollTop == $(document).height()-$(window).height()){
-        $('#navigation li').removeClass('active');
-        $('#navigation li a[href=#dealers]').parent('li').addClass('active');
-    }
+};
 
+
+////////////////////////////// common-ani.css
+/* animation 정의 */
+
+.active {
+	-webkit-animation-fill-mode:forwards;
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+}
+
+/* fade - 천천히 선명해짐 */
+@-webkit-keyframes ani_fadeIn {
+    from { opacity:0;}
+    to { opacity:1;}
+}
+@-moz-keyframes ani_fadeIn {
+    from { opacity:0;}
+    to { opacity:1;}
+}
+@-o-keyframes ani_fadeIn {
+    from { opacity:0;}
+    to { opacity:1;}
+}
+@keyframes ani_fadeIn {
+    from { opacity:0; }
+    to { opacity:1;}
+}
+
+/* fade - 천천히 흐려짐 */
+@-webkit-keyframes ani_fadeOut {
+    from { opacity:1;}
+    to { opacity:0;}
+}
+@-moz-keyframes ani_fadeOut {
+    from { opacity:1;}
+    to { opacity:0;}
+}
+@-o-keyframes ani_fadeOut {
+    from { opacity:1;}
+    to { opacity:0;}
+}
+@keyframes ani_fadeOut {
+    from { opacity:1;}
+    to { opacity:0;}
+}
+	
+
+/* scale - 작다가 커짐 */
+@-webkit-keyframes ani_scaleUp {
+    from { opacity:0;-webkit-transform: scale(0.5); }
+    to { opacity:1;-webkit-transform: scale(1); }
+}
+@-moz-keyframes ani_scaleUp {
+    from { opacity:0;-moz-transform: scale(0.5); }
+    to { opacity:1;-moz-transform: scale(1); }
+}
+@-o-keyframes ani_scaleUp {
+    from { opacity:0;-o-transform: scale(0.5); }
+    to { opacity:1;-o-transform: scale(1); }
+}
+@keyframes ani_scaleUp {
+    from { opacity:0;transform: scale(0.5); }
+    to { opacity:1;transform: scale(1); }
+}
+
+/* scale - 크다가 작아짐 */
+@-webkit-keyframes ani_scaleDown {
+    from { opacity:0;-webkit-transform: scale(1.5); }
+    to { opacity:1;-webkit-transform: scale(1); }
+}
+@-moz-keyframes ani_scaleDown {
+    from { opacity:0;-moz-transform: scale(1.5); }
+    to { opacity:1;-moz-transform: scale(1); }
+}
+@-o-keyframes ani_scaleDown {
+    from { opacity:0;-o-transform: scale(1.5); }
+    to { opacity:1;-o-transform: scale(1); }
+}
+@keyframes ani_scaleDown {
+    from { opacity:0;transform: scale(1.5); }
+    to { opacity:1;transform: scale(1); }
+}
+
+/* slide - 아래 > 위 */
+@-webkit-keyframes ani_slideUp {
+    from { opacity:0;-webkit-transform: translateY(50px); }
+    to { opacity:1;-webkit-transform: translateY(0px); }
+}
+@-moz-keyframes ani_slideUp {
+    from { opacity:0;-moz-transform: translateY(50px)); }
+    to { opacity:1;-moz-transform: translateY(0px); }
+}
+@-o-keyframes ani_slideUp {
+    from { opacity:0;-o-transform: translateY(50px); }
+    to { opacity:1;-o-transform: translateY(0px); }
+}
+@keyframes ani_slideUp {
+    from { opacity:0;transform: translateY(50px); }
+    to { opacity:1;transform: translateY(0px); }
+}
+
+/* slide - 위 > 아래 */
+@-webkit-keyframes ani_slideDown {
+    from { opacity:0;-webkit-transform: translateY(-50px); }
+    to { opacity:1;-webkit-transform: translateY(0px); }
+}
+@-moz-keyframes ani_slideDown {
+    from { opacity:0;-moz-transform: translateY(-50px)); }
+    to { opacity:1;-moz-transform: translateY(0px); }
+}
+@-o-keyframes ani_slideDown {
+    from { opacity:0;-o-transform: translateY(-50px); }
+    to { opacity:1;-o-transform: translateY(0px); }
+}
+@keyframes ani_slideDown {
+    from { opacity:0;transform: translateY(-50px); }
+    to { opacity:1;transform: translateY(0px); }
+}
+
+
+
+//////////////////////////////////// main.css
+section.active {
+	-webkit-animation: ani_fadeIn 1s 0s 1 ease;
+	-moz-animation: ani_fadeIn 1s 0s 1 ease;
+	-o-animation: ani_fadeIn 1s 0s 1 ease;
+	animation: ani_fadeIn 1s 0s 1 ease;
 }
