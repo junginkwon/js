@@ -1,0 +1,16 @@
+$(window).scroll(function () {
+    var scrollTop = $(this).scrollTop();
+
+    if(scrollTop > 0){
+        header.addClass('fixed');
+    }
+    else {
+        header.removeClass('fixed');
+    }
+    if(scrollTop > 200) {
+        $("#topBtn").fadeIn();
+    } else {
+        $("#topBtn").fadeOut();
+    }
+    activeMenu();
+}).scroll();
