@@ -1,0 +1,26 @@
+어플이나 모바일웹페이지나 링크거는 방법은 동일하다.
+
+* 마켓링크 종류
+ packageName = 패키지네임이라고 가정
+ searchName = 검색어라고 가정
+
+market://details?id=packageName
+ - 해당 패키지명을 가진 어플의 상세화면으로 간다
+
+market://search?q=packageName
+market://search?q=searchName 
+ - 해당패키지명 또는 해당 검색명으로 마켓에서 검색을 한다.
+
+* HTML
+href를 사용하여 로 링크를 걸 수 있다.
+ <a href="market://details?id=packageName">GO_MARKET</a> //삭제
+//정보제공 : http://anwoong.tistory.com/  안웅
+
+<a href="http://market.android.com/details?id=packageName"></a>
+ 
+
+*Android
+Intent에 실어 날리면 된다
+ Intent marketLaunch = new Intent(Intent.ACTION_VIEW); 
+marketLaunch.setData(Uri.parse("market://search?q=네이트온")); 
+startActivity(marketLaunch);
