@@ -1,0 +1,12 @@
+jQuery(function(){
+	var img_list = jQuery(".typeWrap img");
+	var img_loaded_counter = 1;
+	img_list.on('load',function(){
+		if( img_loaded_counter < img_list.length ){
+			++img_loaded_counter;
+			console.log(img_loaded_counter);
+		}else{
+			console.log('load complete');
+		}
+	});
+});
